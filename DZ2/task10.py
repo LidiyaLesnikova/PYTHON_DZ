@@ -7,7 +7,6 @@
 """
 import random
 
-flag = bool(True)
 while True:
     try:
         N = int(input('введите количество монеток на столе: '))
