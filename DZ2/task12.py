@@ -11,8 +11,8 @@ while True:
         S = int(input('введите сумму загаданных чисел: '))
         P = int(input('введите произведение загаданных чисел: '))
         flag = True
-        for x in range(P):
-            for y in range(P):
+        for x in range(S):
+            for y in range(S):
                 if x+y == S and x*y == P:
                     print(f'x = {x}, y = {y}')
                     flag = False
