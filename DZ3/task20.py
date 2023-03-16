@@ -24,3 +24,27 @@ Q, Z – 10 очков.
 Ввод: ноутбук
 Вывод: 12
 """
+
+point = [0 for i in range(11)]
+point[1] = ('A, E, I, O, U, L, N, S, T, R'+'А, В, Е, И, Н, О, Р, С, Т').replace(' ', '').replace(',', '')
+point[2] = ('D, G'+'Д, К, Л, М, П, У').replace(' ', '').replace(',', '')
+point[3] = ('B, C, M, P'+'Б, Г, Ё, Ь, Я').replace(' ', '').replace(',', '')
+point[4] = ('F, H, V, W, Y'+'Й, Ы').replace(' ', '').replace(',', '')
+point[5] = ('K'+'Ж, З, Х, Ц, Ч').replace(' ', '').replace(',', '')
+point[8] = ('J, X'+'Ш, Э, Ю').replace(' ', '').replace(',', '')
+point[10]= ('Q, Z'+'Ф, Щ, Ъ').replace(' ', '').replace(',', '')
+
+dictionary = dict()
+for i in point:
+    if i != 0:
+        for j in i:
+            dictionary[j] = point.index(i)
+
+word = str(input('введите слово: '))
+score = 0
+for k in word.upper():
+    try:
+        score += dictionary[k]               
+    except:
+        score += 0
+print(f'Стоимость слова -> {score}')
