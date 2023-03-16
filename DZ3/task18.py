@@ -17,20 +17,22 @@ while True:
         if N>0 and X>0:
             array = [random.randint(1, N) for _ in range(N)]
             print(array)
-            arraySet= set(array)
-            print(arraySet)
+            arraySet= tuple(set(array))
             arrayDifference = [X-i for i in arraySet]
-            print(arrayDifference)
-            for i in arrayDifference:
-                print(f'№ {i}')
-                if i == 0:
-                    print(f'Искомое число X = {X} есть в массиве, оно же ближайшее')
-                    break
-                elif i == 1:
-                    print(f'Искомое число X = {X} в массиве -> {len(arrayDifference)}')
-                    break
-                # else:
-                #     break
+            if 0 in arrayDifference:
+                print(f'Искомое число X = {X} есть в массиве, оно же ближайшее')
+            else:
+                arrPlus = [i for i in arrayDifference if i>0]
+                arrMinus = [j for j in arrayDifference if j<0]
+                if len(arrPlus)==0:
+                    print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(max(arrMinus))]}')
+                elif len(arrMinus)==0:
+                    print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(min(arrPlus))]}')               
+                else:
+                    if min(arrPlus) <= abs(max(arrMinus)):
+                        print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(min(arrPlus))]}')
+                    else:
+                        print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(max(arrMinus))]}')
             break
         else:
             print('ошибка ввода количества, введите натуральные положительные числа')            
