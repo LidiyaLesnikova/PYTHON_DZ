@@ -9,3 +9,23 @@
 1 2 1 2 2
 Вывод: 2
 """
+
+import random
+
+while True:
+    try:
+        N = int(input('введите количество элементов массива N: '))
+        X = int(input('введите число проверки X: '))
+        if N>0 and X>0:
+            array = [random.randint(1, N/2) for _ in range(N)]
+            print(array)
+            if X in array:
+                array2 = [i for i in array if i==X]
+                print(f'Искомое число X = {X} в массиве -> {len(array2)}')
+                break
+            else:
+                print('число проверки отсутсвует в массиве, введите заново')
+        else:
+            print('ошибка ввода количества, введите натуральные положительные числа')            
+    except:
+        print('ошибка ввода типа данных, введите заново')
