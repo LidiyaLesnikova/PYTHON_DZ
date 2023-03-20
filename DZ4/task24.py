@@ -1,40 +1,40 @@
 """"
-Требуется найти в массиве A[1..N] самый близкий по величине элемент к заданному числу X.
-Пользователь вводит натуральное число N – количество элементов в массиве и число, которое необходимо проверить - X.
-Заполните массив случайными натуральными числами от 1 до N.
-Выведите, ближайший к X элемент. Если есть несколько элементов, которые равноудалены от X, выведите наименьший по величине.
-Ввод: 10
-Ввод: 7
-1 2 1 8 9 6 5 4 3 4
-Вывод: 6
+В фермерском хозяйстве в Карелии выращивают чернику. Она растет на круглой грядке, причем кусты высажены только по окружности. 
+Таким образом, у каждого куста есть ровно два соседних. Всего на грядке растет N кустов.
+Эти кусты обладают разной урожайностью, поэтому ко времени сбора на них выросло различное число ягод – на i-ом кусте выросло ai ягод.
+В этом фермерском хозяйстве внедрена система автоматического сбора черники.
+Эта система состоит из управляющего модуля и нескольких собирающих модулей. Собирающий модуль за один заход, находясь непосредственно 
+перед некоторым кустом, собирает ягоды с этого куста и с двух соседних с ним.
+Напишите программу для нахождения максимального числа ягод, которое может собрать за один заход собирающий модуль, находясь перед 
+некоторым кустом заданной во входном файле грядки.
+4 -> 1 2 3 4
+9
 """
 import random
 
-while True:
-    try:
-        N = int(input('введите количество элементов массива N: '))
-        X = int(input('введите заданное число X: '))
-        if N>0 and X>0:
-            array = [random.randint(1, N) for _ in range(N)]
-            print(array)
-            arraySet= tuple(set(array))
-            arrayDifference = [X-i for i in arraySet]
-            if 0 in arrayDifference:
-                print(f'Искомое число X = {X} есть в массиве, оно же ближайшее')
-            else:
-                arrPlus = [i for i in arrayDifference if i>0]
-                arrMinus = [j for j in arrayDifference if j<0]
-                if len(arrPlus)==0:
-                    print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(max(arrMinus))]}')
-                elif len(arrMinus)==0:
-                    print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(min(arrPlus))]}')               
-                else:
-                    if min(arrPlus) <= abs(max(arrMinus)):
-                        print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(min(arrPlus))]}')
-                    else:
-                        print(f'Искомое число X = {X}, ближайшее к нему {arraySet[arrayDifference.index(max(arrMinus))]}')
-            break
-        else:
-            print('ошибка ввода количества, введите натуральные положительные числа')            
-    except:
-        print('ошибка ввода типа данных, введите заново')
+# while True:
+#     try:
+#         N = int(input('введите количество кустов N на грядке: '))
+#         if N>0:
+#             bush = [random.randint(10, 100) for _ in range(N)]
+#             print(bush)
+#             CollectedBerries = []
+#             for i in len(bush):
+#                 CollectedBerries.append(bush[i-2:i])
+#             print(CollectedBerries)
+#             break
+#         else:
+#             print('ошибка ввода количества, введите натуральное положительное число')            
+#     except:
+#         print('ошибка ввода типа данных, введите заново')
+
+N = int(input('введите количество кустов N на грядке: '))
+bushes = [random.randint(1, 50) for _ in range(N)]
+print(bushes)
+CollectedBerries = [(bushes[i-2]+bushes[i-1]+bushes[i], i-1) for i in range(len(bushes))]
+a, b = max(CollectedBerries)
+if b==-1:
+    bush = len(bushes)
+else:
+    bush = b+1
+print(f'Максимально собрал {a} ягод с {bush} куста и двух смежных')
