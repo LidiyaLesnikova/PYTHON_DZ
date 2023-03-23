@@ -12,29 +12,23 @@
 """
 import random
 
-# while True:
-#     try:
-#         N = int(input('введите количество кустов N на грядке: '))
-#         if N>0:
-#             bush = [random.randint(10, 100) for _ in range(N)]
-#             print(bush)
-#             CollectedBerries = []
-#             for i in len(bush):
-#                 CollectedBerries.append(bush[i-2:i])
-#             print(CollectedBerries)
-#             break
-#         else:
-#             print('ошибка ввода количества, введите натуральное положительное число')            
-#     except:
-#         print('ошибка ввода типа данных, введите заново')
+while True:
+    try:
+        N = int(input('введите количество кустов N на грядке: '))
+        if N>0:
+            bushes = [random.randint(1, 50) for _ in range(N)]
+            print(bushes)
+            CollectedBerries = [(bushes[i-2]+bushes[i-1]+bushes[i], i-1) for i in range(len(bushes))]
+            a, b = max(CollectedBerries)
+            if b==-1:
+                bush = len(bushes)
+            else:
+                bush = b+1
+            print(f'Максимально собрал {a} ягод с {bush} куста и двух смежных')
+            break
+        else:
+            print('ошибка ввода количества, введите натуральное положительное число')            
+    except:
+        print('ошибка ввода типа данных, введите заново')
 
-N = int(input('введите количество кустов N на грядке: '))
-bushes = [random.randint(1, 50) for _ in range(N)]
-print(bushes)
-CollectedBerries = [(bushes[i-2]+bushes[i-1]+bushes[i], i-1) for i in range(len(bushes))]
-a, b = max(CollectedBerries)
-if b==-1:
-    bush = len(bushes)
-else:
-    bush = b+1
-print(f'Максимально собрал {a} ягод с {bush} куста и двух смежных')
+
