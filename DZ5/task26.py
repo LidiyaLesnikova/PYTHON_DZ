@@ -11,7 +11,7 @@ while True:
     try:
         A = int(input('Введите число А '))
         B = int(input('Введите число B '))
-        if B>0:
+        if B>=0:
             print(f'{A} в степени {B} -> {degree(A, B)}')    
         else:
             print(f'{A} в степени {B} -> {1/degree(A, -B)}')   
