@@ -9,3 +9,14 @@
 Вывод:
 Парам пам-пам
 """
+string = 'пара-ра-рам ром-пюм-папам па-ра-па-дам'
+VoweLettters = 'аеёиоуэюя'
+
+list1 = []
+for i in string.split(' '):
+    list1.append(len(list(filter(lambda x: x in VoweLettters,''.join(i).lower()))))
+
+if list1.count(list1[0]) == len(list1):
+    print('Парам пам-пам')
+else:
+    print('Пам парам')
